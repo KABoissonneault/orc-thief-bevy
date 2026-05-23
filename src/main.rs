@@ -1,6 +1,6 @@
 use bevy::prelude::*;
-use bevy_inspector_egui::bevy_egui::EguiPlugin;
-use bevy_inspector_egui::quick::WorldInspectorPlugin;
+#[cfg(feature = "debug")]
+use bevy_inspector_egui::{bevy_egui::EguiPlugin, quick::WorldInspectorPlugin};
 
 struct OrcThiefPlugin;
 
@@ -15,9 +15,11 @@ fn orc_thief_setup(mut commands: Commands) {
     commands.spawn(Camera2d);
 }
 
+#[cfg(feature = "debug")]
 #[derive(Resource, PartialEq, Eq)]
 struct WorldInspectorRun(bool);
 
+#[cfg(feature = "debug")]
 fn toggle_debug(input: Res<ButtonInput<KeyCode>>, mut world_inspector_run: ResMut<WorldInspectorRun>) {
     if input.just_pressed(KeyCode::F1) {
         world_inspector_run.0 = !world_inspector_run.0;
@@ -38,14 +40,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         )
         .add_plugins(OrcThiefPlugin);
 
-    app
-        .insert_resource(WorldInspectorRun(false))
-        .add_plugins((
-            EguiPlugin::default(),
-            WorldInspectorPlugin::default().run_if(resource_equals(WorldInspectorRun(true))),
-        ))
-        .add_systems(Update, toggle_debug);
-    
+    #[cfg(feature = "debug")]
+    {
+        app
+            .insert_resource(WorldInspectorRun(false))
+            .add_plugins((
+                EguiPlugin::default(),
+                WorldInspectorPlugin::default().run_if(resource_equals(WorldInspectorRun(true))),
+            ))
+            .add_systems(Update, toggle_debug);
+    }
+
     app.run();
 
     Ok(())
