@@ -1,4 +1,5 @@
 use bevy::prelude::*;
+use bevy_ecs_tiled::prelude::{TiledMap, TiledPlugin, TilemapAnchor};
 #[cfg(feature = "debug")]
 use bevy_inspector_egui::{bevy_egui::EguiPlugin, quick::WorldInspectorPlugin};
 
@@ -6,13 +7,17 @@ struct OrcThiefPlugin;
 
 impl Plugin for OrcThiefPlugin {
     fn build(&self, app: &mut App) {
-        app.insert_resource(ClearColor(Color::srgb(0.5, 0.5, 0.9)));
+        app.add_plugins(TiledPlugin::default());
+        app.insert_resource(ClearColor(Color::srgb(0.08, 0.1, 0.08)));
         app.add_systems(Startup, orc_thief_setup);
     }
 }
 
-fn orc_thief_setup(mut commands: Commands) {
+fn orc_thief_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn(Camera2d);
+
+    let map = asset_server.load("maps/map1.tmx");
+    commands.spawn((TiledMap(map), TilemapAnchor::Center));
 }
 
 #[cfg(feature = "debug")]
@@ -37,6 +42,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 }),
                 ..default()
             })
+            .set(ImagePlugin::default_nearest())
         )
         .add_plugins(OrcThiefPlugin);
 
