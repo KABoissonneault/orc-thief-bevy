@@ -21,7 +21,6 @@ dev = [
     "dep:egui",
     "dep:bevy-inspector-egui",
     "bevy/dev",
-    "bevy/bevy_dev_tools",
     "bevy/bevy_ui_debug",
     "bevy/track_location",
 ]

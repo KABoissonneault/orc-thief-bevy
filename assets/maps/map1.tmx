@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="../tiles/tiles8x8.tsx"/>
  <layer id="1" name="Tile Layer 1" width="120" height="90">
   <data encoding="base64" compression="zstd">
-   KLUv/WDApxUBAFAwAAAALDAsMCwwB6AQ4OnAwwFc306JU2Upp0ols4r3vQM=
+   KLUv/WDAp3UBAFAwAAAABwAAAAwwC6CAmXggg7vmrdJeQ0XpkqJUTSru031LKspSgzWodEPv2gY=
   </data>
  </layer>
 </map>

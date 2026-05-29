@@ -27,7 +27,6 @@ fn draw_diagnostic_ui(diagnostics: Res<DiagnosticsStore>, mut contexts: EguiCont
     let context_result = contexts.ctx_mut();
     match context_result {
         Ok(context) => {
-            let context = context;
             egui::Window::new("Diagnostics").show(context, |ui| {
                 for diagnostic in diagnostics.iter() {
                     let Some(value) = get_diagnostic_value(diagnostic) else {
