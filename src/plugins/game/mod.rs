@@ -3,6 +3,8 @@ mod tile_entity_transform;
 use bevy::prelude::*;
 use bevy_ecs_tiled::prelude::{TiledMap, TilemapAnchor};
 
+const TILE_COORD_TO_WORLD_POS: f32 = 24.0;
+
 fn get_tile_center_world_coord(tile_coord: IVec2) -> Vec2 {
     (tile_coord.as_vec2() * TILE_COORD_TO_WORLD_POS)
         + Vec2::new(TILE_COORD_TO_WORLD_POS/2.0, TILE_COORD_TO_WORLD_POS/2.0)
@@ -17,7 +19,18 @@ impl TileCoord {
     }
 }
 
-const TILE_COORD_TO_WORLD_POS: f32 = 8.0;
+#[derive(Component, Default, Reflect)]
+#[reflect(Component, Default)]
+enum SpawnPoint {
+    #[default]
+    Unknown,
+    Player,
+}
+
+#[derive(Resource)]
+struct SpawnPoints {
+    player_points: Vec<Entity>
+}
 
 pub(crate) fn plugin(app: &mut App) {
     app.add_plugins(tile_entity_transform::plugin);
@@ -26,11 +39,28 @@ pub(crate) fn plugin(app: &mut App) {
     app.add_systems(Startup, (orc_thief_setup,
                               (load_title_entity_assets, spawn_player).chain()));
     app.add_systems(Update, move_player);
+    app.register_type::<SpawnPoint>();
 }
 
 fn orc_thief_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
     let map = asset_server.load("maps/map1.tmx");
-    commands.spawn((TiledMap(map), TilemapAnchor::Center));
+    commands.spawn((TiledMap(map), TilemapAnchor::Center))
+        .observe(on_add_spawn);
+}
+
+fn on_add_spawn(add_spawn: On<Add, SpawnPoint>, spawn_query: Query<&SpawnPoint>, mut spawn_points: ResMut<SpawnPoints>) {
+    let spawn_entity = add_spawn.event().entity;
+
+    let spawn_type = spawn_query.get(spawn_entity).unwrap();
+
+    match spawn_type {
+        SpawnPoint::Player => {
+            spawn_points.player_points.push(spawn_entity);
+        },
+        SpawnPoint::Unknown => {
+            warn!("Unknown spawn type");
+        }
+    }
 }
 
 #[derive(Resource, Default)]
@@ -39,7 +69,7 @@ struct TestEntityAssets {
     material: Handle<ColorMaterial>,
 }
 
-const TEST_ENTITY_SHAPE: Circle = Circle::new(4.0);
+const TEST_ENTITY_SHAPE: Circle = Circle::new(12.0);
 const TEST_ENTITY_COLOR: Color = Color::srgb(0.6, 0.4, 0.4);
 
 fn load_title_entity_assets(mut meshes: ResMut<Assets<Mesh>>
