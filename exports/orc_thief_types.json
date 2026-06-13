@@ -1,0 +1,102 @@
+[
+  {
+    "id": 6,
+    "name": "bevy_color::color::Color",
+    "type": "class",
+    "useAs": [
+      "property"
+    ],
+    "color": "#000000",
+    "drawFill": true,
+    "members": [
+      {
+        "name": "0",
+        "type": "color",
+        "value": "#ffffffff"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "bevy_ecs::name::Name",
+    "type": "class",
+    "useAs": [
+      "property"
+    ],
+    "color": "#000000",
+    "drawFill": true,
+    "members": [
+      {
+        "name": "0",
+        "type": "string",
+        "value": {
+          "hash": 6710620181012523650,
+          "name": ""
+        }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "bevy_sprite::text2d::Text2d",
+    "type": "class",
+    "useAs": [
+      "property"
+    ],
+    "color": "#000000",
+    "drawFill": true,
+    "members": [
+      {
+        "name": "0",
+        "type": "string",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "bevy_text::text::TextColor",
+    "type": "class",
+    "useAs": [
+      "property"
+    ],
+    "color": "#000000",
+    "drawFill": true,
+    "members": [
+      {
+        "name": "0",
+        "type": "color",
+        "value": "#ffffffff"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "orc_thief_bevy::plugins::game::SpawnPoint",
+    "type": "class",
+    "useAs": [
+      "property"
+    ],
+    "color": "#000000",
+    "drawFill": true,
+    "members": [
+      {
+        "name": ":variant",
+        "propertyType": "orc_thief_bevy::plugins::game::SpawnPoint:::Variant",
+        "type": "class",
+        "value": "Unknown"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "orc_thief_bevy::plugins::game::SpawnPoint:::Variant",
+    "type": "enum",
+    "storageType": "string",
+    "values": [
+      "Unknown",
+      "Player"
+    ],
+    "valuesAsFlags": false
+  }
+]

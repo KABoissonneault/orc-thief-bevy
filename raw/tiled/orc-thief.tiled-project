@@ -7,10 +7,108 @@
     "folders": [
         ".",
         "../../assets/maps",
-        "../../assets/tiles"
+        "../../assets/tiles",
+        "../../exports"
     ],
     "properties": [
     ],
     "propertyTypes": [
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 1,
+            "members": [
+                {
+                    "name": "0",
+                    "type": "color",
+                    "value": "#ffffffff"
+                }
+            ],
+            "name": "bevy_color::color::Color",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 2,
+            "members": [
+                {
+                    "name": "0",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "bevy_ecs::name::Name",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 3,
+            "members": [
+                {
+                    "name": "0",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "bevy_sprite::text2d::Text2d",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 4,
+            "members": [
+                {
+                    "name": "0",
+                    "type": "color",
+                    "value": "#ffffffff"
+                }
+            ],
+            "name": "bevy_text::text::TextColor",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 5,
+            "members": [
+                {
+                    "name": ":variant",
+                    "propertyType": "orc_thief_bevy::plugins::game::SpawnPoint:::Variant",
+                    "type": "string",
+                    "value": "Unknown"
+                }
+            ],
+            "name": "orc_thief_bevy::plugins::game::SpawnPoint",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "id": 6,
+            "name": "orc_thief_bevy::plugins::game::SpawnPoint:::Variant",
+            "storageType": "string",
+            "type": "enum",
+            "values": [
+                "Unknown",
+                "Player"
+            ],
+            "valuesAsFlags": false
+        }
     ]
 }

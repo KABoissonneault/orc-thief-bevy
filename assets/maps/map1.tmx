@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" width="120" height="90" tilewidth="24" tileheight="24" infinite="0" nextlayerid="3" nextobjectid="5">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="120" height="90" tilewidth="24" tileheight="24" infinite="0" nextlayerid="3" nextobjectid="5">
  <tileset firstgid="1" source="../tiles/tiles24x24.tsx"/>
  <layer id="1" name="Tile Layer 1" width="120" height="90">
   <data encoding="base64" compression="zstd">
@@ -7,7 +7,14 @@
   </data>
  </layer>
  <objectgroup id="2" name="Object Layer 1">
-  <object id="4" name="Default Spawn" type="DefaultSpawn" x="1428" y="1044">
+  <object id="4" name="Default Spawn" x="1428" y="1044">
+   <properties>
+    <property name="SpawnPoint" type="class" propertytype="orc_thief_bevy::plugins::game::SpawnPoint">
+     <properties>
+      <property name=":variant" propertytype="orc_thief_bevy::plugins::game::SpawnPoint:::Variant" value="Player"/>
+     </properties>
+    </property>
+   </properties>
    <point/>
   </object>
  </objectgroup>
